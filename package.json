@@ -1,0 +1,17 @@
+{
+  "name": "card-canva-mini",
+  "version": "1.0.0",
+  "description": "Мини-редактор открыток в стиле Canva + авторизация и хранение пользователей",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6",
+    "dotenv": "^16.3.1",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0"
+  }
+}

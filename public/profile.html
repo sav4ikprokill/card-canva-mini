@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мои открытки — Card Canva Mini</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+  <header class="profile-header">
+    <div class="container">
+      <a href="/editor" class="logo">
+        <span class="logo-mark">✉️</span>
+        <span>Card Canva Mini</span>
+      </a>
+      <div class="profile-actions">
+        <span id="username-display"></span>
+        <button id="btn-logout" class="btn-secondary">Выйти</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="profile-main">
+    <div class="container">
+      <div class="profile-header-section">
+        <h1>Мои открытки</h1>
+        <button id="btn-new-card" class="btn-primary">➕ Новая открытка</button>
+      </div>
+      <div id="cards-list" class="cards-grid"></div>
+    </div>
+  </main>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>

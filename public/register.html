@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация — Card Canva Mini</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-page">
+  <main class="auth-container">
+    <div class="auth-card">
+      <div class="logo-section">
+        <span class="logo-mark">✉️</span>
+        <h1>Card Canva Mini</h1>
+        <p>Создавайте и сохраняйте открытки</p>
+      </div>
+      <form id="register-form" class="auth-form">
+        <div class="field-group">
+          <label for="reg-username">Логин</label>
+          <input type="text" id="reg-username" required minlength="3">
+        </div>
+        <div class="field-group">
+          <label for="reg-password">Пароль</label>
+          <input type="password" id="reg-password" required minlength="6">
+        </div>
+        <button type="submit" class="btn-primary full">Зарегистрироваться</button>
+        <div class="auth-links">
+          <a href="/login.html">Уже есть аккаунт?</a>
+          <a href="/editor">В редактор без аккаунта</a>
+        </div>
+      </form>
+    </div>
+  </main>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактор открыток — Card Canva Mini</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/editor.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="logo-mark">✉️</span>
+        <span class="logo-text">Card Canva Mini</span>
+      </div>
+      <div class="topbar-center">
+        <button id="btn-undo" class="top-btn" disabled>↶ Отмена</button>
+        <button id="btn-redo" class="top-btn" disabled>↷ Повтор</button>
+        <button id="btn-save" class="top-btn" title="Сохранить (Ctrl+S)">💾 Сохранить</button>
+        <button id="btn-load" class="top-btn" title="Загрузить из профиля">📂 Загрузить</button>
+      </div>
+      <div class="topbar-right">
+        <button id="btn-download" class="btn-primary">⬇️ Скачать PNG</button>
+        <a href="/" class="btn-secondary">🏠 Главная</a>
+      </div>
+    </header>
+
+    <main class="editor-layout">
+      <!-- ЛЕВАЯ ПАНЕЛЬ -->
+      <aside class="sidebar-left">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="templates">🖼️ Шаблоны</button>
+          <button class="tab-btn" data-tab="text">📝 Текст</button>
+          <button class="tab-btn" data-tab="shapes">🔺 Фигуры</button>
+          <button class="tab-btn" data-tab="stickers">😀 Стикеры</button>
+          <button class="tab-btn" data-tab="background">🎨 Фон</button>
+        </div>
+
+        <div class="tab-content">
+          <!-- ШАБЛОНЫ -->
+          <div class="tab-panel active" id="tab-templates">
+            <p class="hint">Выберите шаблон:</p>
+            <div id="templates-grid" class="templates-grid"></div>
+          </div>
+
+          <!-- ТЕКСТ -->
+          <div class="tab-panel" id="tab-text">
+            <label class="field-label" for="text-input">Текст</label>
+            <textarea id="text-input" rows="3" class="field-control" placeholder="Напишите поздравление..."></textarea>
+            <label class="field-label" for="text-size">Размер</label>
+            <input id="text-size" type="number" class="field-control" min="12" max="96" value="32">
+            <label class="field-label" for="text-color">Цвет</label>
+            <input id="text-color" type="color" class="field-control" value="#111827">
+            <button id="btn-add-text" class="btn-secondary full">➕ Добавить</button>
+          </div>
+
+          <!-- ФИГУРЫ -->
+          <div class="tab-panel" id="tab-shapes">
+            <p class="hint">Геометрические фигуры:</p>
+            <div class="shape-buttons">
+              <button class="btn-chip" data-shape="rect">⬜ Квадрат</button>
+              <button class="btn-chip" data-shape="circle">⭕ Круг</button>
+              <button class="btn-chip" data-shape="triangle">🔺 Треугольник</button>
+            </div>
+            <label class="field-label" for="shape-color">Цвет фигуры</label>
+            <input id="shape-color" type="color" class="field-control" value="#f97316">
+          </div>
+
+          <!-- СТИКЕРЫ -->
+          <div class="tab-panel" id="tab-stickers">
+            <p class="hint">Эмодзи-стикеры:</p>
+            <div class="sticker-grid">
+              <button class="sticker-btn">🎉</button>
+              <button class="sticker-btn">🎂</button>
+              <button class="sticker-btn">🎁</button>
+              <button class="sticker-btn">💐</button>
+              <button class="sticker-btn">❤️</button>
+              <button class="sticker-btn">⭐</button>
+              <button class="sticker-btn">🎈</button>
+              <button class="sticker-btn">✨</button>
+              <button class="sticker-btn">🎊</button>
+            </div>
+          </div>
+
+          <!-- ФОН -->
+          <div class="tab-panel" id="tab-background">
+            <label class="field-label" for="bg-color">Цвет фона</label>
+            <input id="bg-color" type="color" class="field-control" value="#ffffff">
+            <button id="btn-apply-bg" class="btn-secondary full">🎨 Применить</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ХОЛСТ -->
+      <section class="canvas-area">
+        <div class="canvas-wrapper">
+          <canvas id="card-canvas" width="800" height="500"></canvas>
+        </div>
+      </section>
+
+      <!-- ПРАВАЯ ПАНЕЛЬ -->
+      <aside class="sidebar-right">
+        <h2 class="panel-title">⚙️ Свойства</h2>
+        <p id="selection-info" class="hint">Выберите объект на холсте</p>
+
+        <div class="prop-group" data-type="text">
+          <h3>📝 Текст</h3>
+          <label class="field-label" for="prop-text-content">Текст</label>
+          <textarea id="prop-text-content" rows="2" class="field-control"></textarea>
+          <label class="field-label" for="prop-text-size">Размер</label>
+          <input id="prop-text-size" type="range" min="12" max="96" value="32" class="field-control">
+          <label class="field-label" for="prop-text-color">Цвет</label>
+          <input id="prop-text-color" type="color" class="field-control" value="#111827">
+        </div>
+
+        <div class="prop-group" data-type="shape">
+          <h3>🔺 Фигура</h3>
+          <label class="field-label" for="prop-shape-color">Цвет</label>
+          <input id="prop-shape-color" type="color" class="field-control" value="#f97316">
+        </div>
+
+        <div class="prop-group" data-type="sticker">
+          <h3>😀 Стикер</h3>
+          <p class="hint">Перетаскивайте стикер мышкой</p>
+        </div>
+
+        <button id="btn-delete" class="btn-danger full" disabled>🗑️ Удалить</button>
+      </aside>
+    </main>
+
+    <!-- МОДАЛКА ЗАГРУЗКИ -->
+    <div id="load-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-content">
+        <h3>📂 Выберите открытку</h3>
+        <div id="load-cards-list" class="load-cards-list"></div>
+        <div class="modal-actions">
+          <button id="modal-load-btn" class="btn-primary">Загрузить</button>
+          <button id="modal-cancel" class="btn-secondary">Отмена</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/editor.js"></script>
+</body>
+</html>
